@@ -1,0 +1,50 @@
+{% extends "master.html" %}
+{% load static %}
+<!-- news.html -->
+<!DOCTYPE html>
+<html lang="en">
+{% block title %}
+Berita-Terkini
+{% endblock %}
+
+{% block head %}
+<link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<body>
+    <section id="news" class="news section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>News</h2>
+          <p>Find the right financial news for you!</p>
+        </div><!-- End Section Title -->
+  
+        <!-- card section -->
+        <div class="container mt-5">
+          <div class="row">
+            {% for article in articles %}
+            <!-- News Card -->
+            <div class="col-md-4 mb-4">
+              <div class="news-card">
+                <img src="{{ article.urlToImage }}" alt="News Image">
+                <div class="news-content">
+                  <h5>{{ article.title }}</h5>
+                  <a href="{{ article.url }}">Read More »</a>
+                </div>
+                <div class="news-footer">
+                  {{ article.author }} &bull; {{article.publishedAt}}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+  
+          <!-- Load More Button -->
+          <a href="#" class="btn-load-more text-center">Lihat Lebih Banyak</a>
+        </div>
+        <!-- /card section -->
+      </section> 
+</body>
+{% endblock %}
+
