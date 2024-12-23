@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.template import loader
 from django.http import HttpResponse
 import requests
 from .forms import RegistrationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
+from .models import Question, Response, Section, SubQuestion
 # Create your views here.
 
 
@@ -56,3 +58,33 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login_view.html', {'form': form})
+
+def survey_view(request):
+    section = Section.objects.all()
+    main_question = Question.objects.all()
+    sub_questions = SubQuestion.objects.all()
+
+    if request.method == 'POST':
+        # Loop melalui setiap pertanyaan untuk menyimpan respons
+        for sub_question in sub_questions:
+            response_value = request.POST.get(f'question_{sub_question.id}')
+            if response_value:
+                Response.objects.create(
+                    user=request.user,
+                    sub_question=sub_question,
+                    response=response_value
+                )
+        return redirect('thank_you')
+    
+    
+    context = {
+        'section': section,
+        'main_question': main_question,
+        'sub_questions' : sub_questions
+    }
+    
+    return render(request, 'survey.html', context)
+
+def dashboard_home_view(request):
+    template = loader.get_template('dashboard_home.html')
+    return HttpResponse(template.render())

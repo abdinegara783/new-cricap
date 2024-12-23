@@ -1,0 +1,285 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Survey-CRICAP
+{% endblock %}
+
+
+
+{% block head %}
+<link href="{% static 'assets/css/dashboard.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<body class="dashboard">
+    <nav class="navbar navbar-light bg-light p-3">
+        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+            <a class="navbar-brand" href="#">
+                CRICAP Dashboard
+            </a>
+            <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="col-12 col-md-4 col-lg-2">
+            <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
+        </div>
+        <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+            <div class="mr-3 mt-1">
+                <img src="assets\img\User-Profile.jpeg" alt="User Profile" class="rounded-circle" width="50" height="50">
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                  Hello, John Doe
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Messages</a></li>
+                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+              </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span class="ml-2">Dashboard</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            <span class="ml-2">Credit Analysis</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <span class="ml-2">User Settings</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                            <span class="ml-2">Reports</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            <span class="ml-2">Logout</span>
+                          </a>
+                        </li>
+
+                      </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Analysis</li>
+                    </ol>
+                </nav>
+
+                <div class="survey-container">
+                    <!-- Progress Container -->
+                    <div class="progress-container">
+                        <div class="step-indicator active" id="step1">
+                            <div class="circle-progress">1</div>
+                            <div class="label-progress">Pernyataan</div>
+                        </div>
+                        <div class="step-indicator" id="step2">
+                            <div class="circle-progress">2</div>
+                            <div class="label-progress">Instruksi</div>
+                        </div>
+                        <div class="step-indicator" id="step3">
+                            <div class="circle-progress">3</div>
+                            <div class="label-progress">Data Diri</div>
+                        </div>
+                        <div class="step-indicator" id="step4">
+                            <div class="circle-progress">4</div>
+                            <div class="label-progress">Pertanyaan</div>
+                        </div>
+                        <div class="step-indicator" id="step5">
+                            <div class="circle-progress">5</div>
+                            <div class="label-progress">Selesai</div>
+                        </div>
+                    </div>
+                    <!-- Multi-Step-From -->
+                     <form id="multiStepForm" action="/submit-form" method="POST" >
+                        <div class="step active">
+                            <!-- Agreement-Container -->
+                            <div class="Agreement-Container" style="max-width: 900px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+                                <h4>Pernyataan Pendahuluan</h4>
+                                <p>
+                                    Kuesioner ini untuk menunjang riset berjudul “Pengembangan Model Respons Kredit dan Software Pre-Application Berbasis Sains Data dalam Meningkatkan Literasi Perbankan Masyarakat untuk Mendorong Pertumbuhan Ekonomi”.
+                                    Kami memohon kesediaan Bapak/Ibu untuk meluangkan waktu selama kurang lebih 10-15 menit dalam pengisian kuesioner ini. 
+                                    Tidak ada pilihan yang benar atau salah dalam mengisi kuesioner ini, 
+                                    karena pilihan yang tepat adalah yang paling sesuai dengan
+                                    pendapat atau penilaian Bapak/Ibu. Data hasil survei ini hanya untuk 
+                                    kepentingan penelitian ilmiah, kerahasiannya sangat kami jamin. Kami sangat berterimakasih atas partisipasi Bapak/Ibu dan akan kami menghaturkan mohon maaf jika terjadi salah dan khilaf.
+                                </p>
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="consentCheckbox">
+                                    <label class="form-check-label" for="consentCheckbox">
+                                        Saya menyetujui untuk berpartisipasi dalam kuesioner ini.
+                                    </label>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <!-- Instructions-Container -->
+                            <div class="instructions" style="max-width: 900px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+                                <h4>Petunjuk Pengisian Kuesioner</h4>
+                                <p>
+                                    Pilihlah salah satu alternatif respons (jawaban) untuk setiap butir pernyataan yang paling sesuai dengan kondisi Bapak/Ibu dengan membubuhkan tanda "√". Masing-masing pernyataan memiliki alternatif jawaban sebagai berikut:
+                                </p>
+                                <ul>
+                                    <li><strong>Sangat Setuju (SS):</strong> Bapak/Ibu berpendapat bahwa apa yang terkandung di dalam pernyataan yang diajukan sungguh-sungguh sesuai dengan apa yang dirasakan.</li>
+                                    <li><strong>Setuju (S):</strong> Bapak/Ibu berpendapat bahwa apa yang terkandung di dalam pernyataan yang diajukan sesuai dengan apa yang dirasakan.</li>
+                                    <li><strong>Ragu-Ragu (R):</strong> Bapak/Ibu ragu-ragu tentang apa yang terkandung di dalam pernyataan.</li>
+                                    <li><strong>Tidak Setuju (TS):</strong> Bapak/Ibu berpendapat bahwa apa yang terkandung di dalam pernyataan yang diajukan tidak sesuai dengan apa yang dirasakan.</li>
+                                    <li><strong>Sangat Tidak Setuju (STS):</strong> Bapak/Ibu berpendapat bahwa apa yang terkandung di dalam pernyataan yang diajukan sungguh-sungguh tidak sesuai dengan apa yang dirasakan.</li>
+                                </ul>
+                                <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <!-- Question-Container -->
+                            <div class="question-container">
+                                <h4 class="text-center mb-4">Isi Survey Berikut dengan jujur</h4>
+                        
+                                <!-- Scrollable question container -->
+                                <div class="scroll-container">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        {% for question in sub_questions %}
+                                        <div class="question">
+                                            <h5><b>Soal {{ forloop.counter }}:</b></h5>
+                                            <h5>{{ question.text }}</h5>
+                                            
+                                            <div class="option">
+                                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_a" value="SS">
+                                                <label for="q{{ question.id }}_a">Sangat Setuju</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_b" value="S">
+                                                <label for="q{{ question.id }}_b">Setuju</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_c" value="R">
+                                                <label for="q{{ question.id }}_c">Ragu-Ragu</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_d" value="TS">
+                                                <label for="q{{ question.id }}_d">Tidak Setuju</label>
+                                            </div>
+                                            <div class="option">
+                                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_e" value="STS">
+                                                <label for="q{{ question.id }}_e">Sangat Tidak Setuju</label>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <!-- Tombol Submit hanya muncul di halaman terakhir -->
+                                        {% if not questions.has_next %}
+                                            <button type="submit">Submit Survey</button>
+                                        {% endif %}
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                     </form>
+                </div>
+                            
+                
+                
+                <footer class="pt-5 d-flex justify-content-between">
+                    <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
+                    <ul class="nav m-0">
+                        <li class="nav-item">
+                          <a class="nav-link text-secondary" aria-current="page" href="#">Privacy Policy</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-secondary" href="#">Terms and conditions</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-secondary" href="#">Contact</a>
+                        </li>
+                      </ul>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script>
+        // Pagination logic
+        const pages = document.querySelectorAll('.question-page');
+        let currentPage = 0;
+
+        document.getElementById('next').addEventListener('click', function (e) {
+            e.preventDefault();
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].classList.remove('active-page');
+                currentPage++;
+                pages[currentPage].classList.add('active-page');
+            }
+        });
+
+        document.getElementById('prev').addEventListener('click', function (e) {
+            e.preventDefault();
+            if (currentPage > 0) {
+                pages[currentPage].classList.remove('active-page');
+                currentPage--;
+                pages[currentPage].classList.add('active-page');
+            }
+        });
+    </script>
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll(".step");
+        const indicators = document.querySelectorAll(".step-indicator");
+    
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.classList.toggle("active", index === stepIndex);
+            });
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle("active", index === stepIndex);
+            });
+            currentStep = stepIndex;
+        }
+    
+        function nextStep() {
+            if (currentStep < steps.length - 1) {
+                showStep(currentStep + 1);
+            }
+        }
+    
+        function prevStep() {
+            if (currentStep > 0) {
+                showStep(currentStep - 1);
+            }
+        }
+    
+        // Optional: Prevent default form submission to see multi-step functionality in action
+        document.getElementById("multiStepForm").addEventListener("submit", function(event) {
+            alert("Form submitted!");
+        });
+    </script>
+</body>
+{% endblock %}

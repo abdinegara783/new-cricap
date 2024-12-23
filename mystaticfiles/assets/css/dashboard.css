@@ -1,0 +1,281 @@
+/* Base styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,.08);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #3a0ca3;
+}
+
+.form-control-dark {
+    background-color: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.1);
+}
+
+.form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.25);
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.btn-secondary {
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-secondary:hover {
+    background-color: #3a0ca3;
+    border-color: #3a0ca3;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 90px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    z-index: 99;
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 11.5rem;
+        padding: 0;
+    }
+}
+
+.sidebar .nav-link {
+    color: #333;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover {
+    color: #3a0ca3;
+    background-color: #f8f9fa;
+}
+
+.sidebar .nav-link.active {
+    color: #3a0ca3;
+    background-color: #f8f9fa;
+    border-right: 3px solid #3a0ca3;
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #727272;
+}
+
+.sidebar .nav-link.active .feather {
+    color: #3a0ca3;
+}
+
+/* Main content styles */
+main {
+    padding-top: 90px;
+}
+
+@media (max-width: 767.98px) {
+    main {
+        padding-top: 0;
+    }
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+/* Card styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-primary:hover {
+    background-color: #3a0ca3;
+    border-color: #3a0ca3;
+}
+
+/* Table styles */
+.table {
+    color: #333;
+}
+
+.table thead th {
+    border-top: none;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,.075);
+}
+
+/* Footer styles */
+footer {
+    background-color: #ffffff;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+footer a {
+    color: #3a0ca3;
+}
+
+footer a:hover {
+    color: #4361ee;
+    text-decoration: none;
+}
+
+/* Utility classes */
+.text-primary {
+    color: #4361ee !important;
+}
+
+.bg-primary {
+    background-color: #4361ee !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        padding-top: 0;
+    }
+    
+    main {
+        margin-left: 0 !important;
+    }
+}
+
+/* User profile image */
+.rounded-circle {
+    border: 2px solid #4361ee;
+}
+
+/* Multi-step form styles */
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.step-indicator {
+    width: 20px;
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.step-indicator.active {
+    background-color: #4361ee;
+}
+
+/* Chart styles */
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+    stroke: #4361ee;
+}
+
+.ct-series-b .ct-line,
+.ct-series-b .ct-point {
+    stroke: #3a0ca3;
+}
+
+.ct-label {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
