@@ -44,7 +44,7 @@ def register_view(request):
             return redirect('login')
     else:
         form = RegistrationForm()
-    return render (request, 'register_new.html', {'form':form})
+    return render (request, 'register_view.html', {'form':form})
 
 def login_view(request):
     if request.method == 'POST':
