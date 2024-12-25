@@ -247,34 +247,41 @@
                 <div class="step hidden" id="step4Content">
                     <h2>Pertanyaan Survey</h2>
                     <div class="form-group">
-                        <p>1. Saya merasa nyaman menggunakan layanan perbankan online.</p>
-                        <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="q1" value="SS" required> Sangat Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q1" value="S"> Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q1" value="R"> Ragu-Ragu</label>
-                            <label class="radio-option"><input type="radio" name="q1" value="TS"> Tidak Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q1" value="STS"> Sangat Tidak Setuju</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>2. Saya memahami risiko dan manfaat dari berbagai produk keuangan.</p>
-                        <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="q2" value="SS" required> Sangat Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q2" value="S"> Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q2" value="R"> Ragu-Ragu</label>
-                            <label class="radio-option"><input type="radio" name="q2" value="TS"> Tidak Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q2" value="STS"> Sangat Tidak Setuju</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <p>3. Saya selalu membaca syarat dan ketentuan sebelum menggunakan layanan keuangan.</p>
-                        <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="q3" value="SS" required> Sangat Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q3" value="S"> Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q3" value="R"> Ragu-Ragu</label>
-                            <label class="radio-option"><input type="radio" name="q3" value="TS"> Tidak Setuju</label>
-                            <label class="radio-option"><input type="radio" name="q3" value="STS"> Sangat Tidak Setuju</label>
-                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for question in sub_questions %}
+                            <div class="question">
+                                <p><b>Soal {{ forloop.counter }}:</b></p>
+                                <p>{{ question.text }}</p>
+                                <div class="radio-group">
+                                    <div class="option">
+                                        <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_a" value="SS">
+                                        <label for="q{{ question.id }}_a">Sangat Setuju</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_b" value="S">
+                                        <label for="q{{ question.id }}_b">Setuju</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_c" value="R">
+                                        <label for="q{{ question.id }}_c">Ragu-Ragu</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_d" value="TS">
+                                        <label for="q{{ question.id }}_d">Tidak Setuju</label>
+                                    </div>
+                                    <div class="option">
+                                        <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_e" value="STS">
+                                        <label for="q{{ question.id }}_e">Sangat Tidak Setuju</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- Tombol Submit hanya muncul di halaman terakhir -->
+                            {% if not questions.has_next %}
+                                <button type="submit">Submit Survey</button>
+                            {% endif %}
+                        </form>
                     </div>
                 </div>
 

@@ -77,7 +77,7 @@ def survey_view(request):
                     sub_question=sub_question,
                     response=response_value
                 )
-        return redirect('thank_you')
+        return redirect('home')
     
     
     context = {
