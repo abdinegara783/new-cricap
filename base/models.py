@@ -41,3 +41,33 @@ class Response(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.sub_question.text} - {self.get_response_display()}'
+    
+
+class DataDiri(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nama = models.CharField(max_length=100, blank=True, null=True)
+    usia = models.IntegerField()
+    jenis_kelamin = models.CharField(max_length=15, choices=[
+        ("Laki-laki", "Laki-laki"),
+        ("Perempuan", "Perempuan"),
+    ])
+    status_perkawinan = models.CharField(max_length=20, choices=[
+        ("Belum berkeluarga", "Belum berkeluarga"),
+        ("Duda", "Duda"),
+        ("Janda", "Janda"),
+        ("Berkeluarga", "Berkeluarga"),
+    ])
+    pendidikan = models.CharField(max_length=20, choices=[
+        ("SLTP", "SLTP"),
+        ("SLTA", "SLTA"),
+        ("Diploma", "Diploma"),
+        ("Sarjana", "Sarjana"),
+        ("Pascasarjana", "Pascasarjana"),
+    ])
+    tempat_tinggal = models.CharField(max_length=100)
+    kabupaten_kota = models.CharField(max_length=100)
+    pekerjaan = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nama or 'Anonim'} - {self.usia} Tahun"
+

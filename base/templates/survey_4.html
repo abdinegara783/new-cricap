@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}Dashboard - CRICAP{% endblock %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="{% static 'assets/css/dashboard.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<body>
+    <header class="header">
+        <h1>CRICAP Survey</h1>
+    </header>
+
+    <div class="container">
+        <div class="survey-form">
+            <h2>Pertanyaan Survey</h2>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for question in sub_questions %}
+                    <div class="question">
+                        <p><b>Soal {{ forloop.counter }}:</b></p>
+                        <p>{{ question.text }}</p>
+                        <div class="radio-group">
+                            <div class="option">
+                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_a" value="SS">
+                                <label for="q{{ question.id }}_a">Sangat Setuju</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_b" value="S">
+                                <label for="q{{ question.id }}_b">Setuju</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_c" value="R">
+                                <label for="q{{ question.id }}_c">Ragu-Ragu</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_d" value="TS">
+                                <label for="q{{ question.id }}_d">Tidak Setuju</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="question_{{ question.id }}" id="q{{ question.id }}_e" value="STS">
+                                <label for="q{{ question.id }}_e">Sangat Tidak Setuju</label>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Tombol Submit hanya muncul di halaman terakhir -->
+                    {% if not questions.has_next %}
+                        <button type="submit" class="btn btn-primary">Submit Survey</button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

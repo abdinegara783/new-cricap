@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Question, Response, SubQuestion, Section
+from .models import Question, Response, SubQuestion, Section, DataDiri
 
 # Register your models here.
 
@@ -10,3 +10,4 @@ admin.site.register(Question)
 admin.site.register(Response)
 admin.site.register(SubQuestion)
 admin.site.register(Section)
+admin.site.register(DataDiri)
