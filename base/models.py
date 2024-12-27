@@ -71,3 +71,10 @@ class DataDiri(models.Model):
     def __str__(self):
         return f"{self.nama or 'Anonim'} - {self.usia} Tahun"
 
+class IRKResult(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Hubungkan ke user
+    irk = models.FloatField()  # Nilai IRK
+    category = models.CharField(max_length=20)  # Kategori IRK
+
+    def __str__(self):
+        return f"{self.user.username} - IRK: {self.irk} - Kategori: {self.category}"

@@ -1,14 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hasil Rata-Rata</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Indeks Respon Kredit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .category {
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .Sangat-Rendah {
+            background-color: #ff4d4d; /* Red */
+            color: white;
+        }
+        .Rendah {
+            background-color: #ffa31a; /* Orange */
+            color: white;
+        }
+        .Sedang {
+            background-color: #ffd700; /* Yellow */
+            color: black;
+        }
+        .Tinggi {
+            background-color: #5cb85c; /* Green */
+            color: white;
+        }
+        .Sangat-Tinggi {
+            background-color: #007bff; /* Blue */
+            color: white;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hasil Analisis Jawaban</h1>
-    <p>Rata-rata skor: {{ average_score }}</p>
-    <p>Nilai maksimum: {{ max_score }}</p>
-    <p>Nilai minimum: {{ min_score }}</p>
-    <p>Standar deviasi: {{ std_dev }}</p>
-    <p>Scores array: {{ scores }}</p>
+    <div class="container">
+        <div class="header">
+            <h1>Hasil Indeks Respon Kredit</h1>
+        </div>
+        <div class="content">
+            <p><strong>Nama:</strong> {{ username.nama }}</p>
+            <p><strong>Usia:</strong> {{ username.usia }} tahun</p>
+            <p><strong>IRK:</strong> {{ irk|floatformat:2 }}</p>
+            <p>
+                <strong>Kategori:</strong> 
+                <span class="category {{ category }}">{{ category }}</span>
+            </p>
+        </div>
+        <div class="footer">
+            &copy; 2024 Sistem IRK. All Rights Reserved.
+        </div>
+    </div>
 </body>
 </html>

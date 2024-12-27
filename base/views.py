@@ -7,7 +7,7 @@ from .forms import DataDiriForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
-from .models import Question, Response, Section, SubQuestion, Response, DataDiri
+from .models import Question, Response, Section, SubQuestion, Response, DataDiri, IRKResult
 from django.contrib.auth.models import User
 import folium
 import pandas as pd
@@ -66,8 +66,13 @@ def login_view(request):
     return render(request, 'login_view.html', {'form': form})
 
 def dashboard_home_view(request):
+    irk = IRKResult.objects.get(user=request.user)
     username = request.user.username  # Ambil username pengguna login
-    return render(request, 'dashboard_home.html', {'username': username})
+    context = {
+        'username': username,
+        'irk': irk,
+    }
+    return render(request, 'dashboard_home.html', context)
 
 def map_views(request):
     template = loader.get_template('map_view.html')
@@ -183,10 +188,26 @@ def survey_5_views(request):
     template = loader.get_template('survey_5.html')
     return HttpResponse(template.render())
 
+# Define categories
+def determine_category(value):
+    if 0 <= value < 0.2:
+        return "Sangat Rendah"
+    elif 0.2 <= value < 0.4:
+        return "Rendah"
+    elif 0.4 <= value < 0.6:
+        return "Sedang"
+    elif 0.6 <= value < 0.8:
+        return "Tinggi"
+    elif 0.8 <= value <= 1:
+        return "Sangat Tinggi"
+    else:
+        return "Nilai tidak valid"
+
 
 def calculate_average_response(request):
     user = request.user  # Ambil user yang sedang login
     responses = Response.objects.filter(user=user)  # Ambil semua jawaban user
+    username = DataDiri.objects.get(user=request.user)
 
     # Konversi respons ke angka
     response_mapping = {
@@ -198,30 +219,56 @@ def calculate_average_response(request):
     }
     scores = np.array([response_mapping[response.response] for response in responses])  # Gunakan NumPy array
 
-    # Debug: Print array scores
-    print(f"Scores array: {scores}")  # Akan muncul di terminal server
-
     # Operasi dengan NumPy
     if scores.size > 0:
-        average_score = np.mean(scores)  # Hitung rata-rata menggunakan NumPy
-        max_score = np.max(scores)      # Nilai maksimum
-        min_score = np.min(scores)      # Nilai minimum
-        std_dev = np.std(scores)        # Standar deviasi
+        # Fase 1: Hitung rata-rata per kelompok
+        x_1 = np.mean(scores[0:4])
+        x_2 = np.mean(scores[4:8])
+        x_3 = np.mean(scores[8:12])
+        x_4 = np.mean(scores[12:16])
+        x_5 = np.mean(scores[16:19])
+        x_6 = np.mean(scores[19:22])
+        x_7 = np.mean(scores[22:25])
+        x_8 = np.mean(scores[25:28])
+        x_9 = np.mean(scores[28:31])
+        x_10 = np.mean(scores[31:34])
+        x_11 = np.mean(scores[34:37])
+        x_12 = np.mean(scores[37:40])
+        x_13 = np.mean(scores[40:43])
+        x_14 = np.mean(scores[43:46])
+        x_15 = np.mean(scores[46:49])
+        x_16 = np.mean(scores[49:52])
+        # Fase 2: Hitung rata-rata gabungan sesuai kelompok
+        y_1 = np.mean([x_1, x_2])
+        y_2 = np.mean([x_3, x_4])
+        y_3 = np.mean([x_5, x_6])
+        y_4 = np.mean([x_7, x_8])
+        y_5 = np.mean([x_9, x_10, x_11])
+        y_6 = np.mean([x_12, x_13])
+        y_7 = np.mean([x_14, x_15, x_16])
+        # Calculate IRK
+        irk = (0.8532 * y_1 + 0.2835 * y_2 + 0.3654 * y_3 +
+            0.2897 * y_4 + 0.4650 * y_5 + 0.4524 * y_6 + 0.7192 * y_7)
+
     else:
-        average_score = None  # Jika tidak ada respons
-        max_score = None
-        min_score = None
-        std_dev = None
+        irk = 0
+    category = determine_category(irk)
+
+    # Simpan IRK dan kategori ke database
+    irk_result, created = IRKResult.objects.get_or_create(user=user)
+    irk_result.irk = irk
+    irk_result.category = category
+    irk_result.save()
 
     # Kirim hasil ke template
     context = {
-        'scores': scores,              # Bisa dikirim ke template jika perlu
-        'average_score': average_score,
-        'max_score': max_score,
-        'min_score': min_score,
-        'std_dev': std_dev,
+        'username': username,
+        'user': user,
+        'irk': irk,
+        'category': category,
     }
     return render(request, 'rata-rata.html', context)
+# [4,4],[4,4],[3,3],[3,3],[3,3,3],[3,3],[3,3,3]
 
 
 

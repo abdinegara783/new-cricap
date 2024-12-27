@@ -134,33 +134,19 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">Client</th>
-                                                <th scope="col">Type</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">IRK</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Date</th>
+                                                <th scope="col">category</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
-                                                <td>ABC Corp</td>
-                                                <td>Full Analysis</td>
+                                                <td>{{ irk.user }}</td>
+                                                <td>{{ irk.irk }}</td>
                                                 <td><span class="badge bg-success">Completed</span></td>
-                                                <td>2023-06-15</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>XYZ Ltd</td>
-                                                <td>Quick Review</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                                <td>2023-06-14</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>123 Industries</td>
-                                                <td>Full Analysis</td>
-                                                <td><span class="badge bg-success">Completed</span></td>
-                                                <td>2023-06-12</td>
+                                                <td>{{ irk.category }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
