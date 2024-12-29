@@ -17,7 +17,7 @@ import numpy as np
 
 
 def news_view(request):
-    url = 'https://newsapi.org/v2/everything?q=finance&apiKey=e5cac2437c82460babf1d584b37eb92c'
+    url = 'https://newsapi.org/v2/everything?q=keuangan&apiKey=e5cac2437c82460babf1d584b37eb92c'
     response = requests.get(url)
     data = response.json()
 
@@ -31,7 +31,7 @@ def news_view(request):
     return render(request, 'news.html', context)
 
 def home(request):
-    url = 'https://newsapi.org/v2/everything?q=finance&apiKey=e5cac2437c82460babf1d584b37eb92c'
+    url = 'https://newsapi.org/v2/everything?q=keuangan&apiKey=e5cac2437c82460babf1d584b37eb92c'
     response = requests.get(url)
     data = response.json()
 
@@ -67,9 +67,11 @@ def login_view(request):
 
 def dashboard_home_view(request):
     irk = IRKResult.objects.get(user=request.user)
-    username = request.user.username  # Ambil username pengguna login
+    user = request.user.username  # Ambil username pengguna login
+    username = DataDiri.objects.get(user=request.user) 
     context = {
         'username': username,
+        'user': user,
         'irk': irk,
     }
     return render(request, 'dashboard_home.html', context)
@@ -80,6 +82,7 @@ def map_views(request):
 
 def report_views(request):
     # Create a map centered on Indonesia
+    user = request.user.username
     m = folium.Map(location=[-2.5489, 118.0149], zoom_start=5)
 
     # Load Indonesia GeoJSON data (you'll need to provide this file)
@@ -116,11 +119,17 @@ def report_views(request):
 
     # Save the map to an HTML file
     m.save('mystaticfiles/map/map.html')
+    context = {
+        'user': user,
+    }
 
-    return render(request, 'report.html')
+    return render(request, 'report.html', context )
 def survey_views(request):
-    template = loader.get_template('survey.html')
-    return HttpResponse(template.render())
+    user = request.user.username
+    context = {
+        'user': user,
+    }
+    return render(request, 'survey.html', context )
 
 def survey_1_views(request):
     template = loader.get_template('survey_1.html')
@@ -190,15 +199,15 @@ def survey_5_views(request):
 
 # Define categories
 def determine_category(value):
-    if 0 <= value < 0.2:
+    if 1 <= value < 1.5 :
         return "Sangat Rendah"
-    elif 0.2 <= value < 0.4:
+    elif 1.51 <= value < 2.50:
         return "Rendah"
-    elif 0.4 <= value < 0.6:
+    elif 2.51 <= value < 3.50:
         return "Sedang"
-    elif 0.6 <= value < 0.8:
+    elif 3.51 <= value < 4.50:
         return "Tinggi"
-    elif 0.8 <= value <= 1:
+    elif 4.51 <= value <= 5.00:
         return "Sangat Tinggi"
     else:
         return "Nilai tidak valid"

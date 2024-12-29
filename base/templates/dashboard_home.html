@@ -24,7 +24,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{% static 'assets/img/User-Profile.jpeg' %}" alt="User Profile" class="rounded-circle me-2" width="32" height="32">
-                            Hello, {{username}}
+                            Hello, {{user}}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><hr class="dropdown-divider"></li>
@@ -47,7 +47,7 @@
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link" href="{% url 'survey' %}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                                 Credit Analysis
@@ -92,7 +92,7 @@
                                 <h5 class="card-title">Credit Analysis Overview</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-title">Selamat datang, {{username}}</p>
+                                <p class="card-title">Selamat datang, {{user}}</p>
                                 <div id="creditAnalysisChart" style="height: 300px;"></div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
-                                                <td>{{ irk.user }}</td>
+                                                <td>{{ username.nama }}</td>
                                                 <td>{{ irk.irk }}</td>
                                                 <td><span class="badge bg-success">Completed</span></td>
                                                 <td>{{ irk.category }}</td>

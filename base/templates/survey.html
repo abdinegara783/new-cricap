@@ -24,7 +24,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{% static 'assets/img/User-Profile.jpeg' %}" alt="User Profile" class="rounded-circle me-2" width="32" height="32">
-                            Hello, {{username}} hayy
+                            Hello, {{user}}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -49,8 +49,8 @@
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'survey' %}">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'survey' %}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                                 Credit Analysis
                             </a>
@@ -90,13 +90,13 @@
                     <div class="card-fitur">
                         <img src="{% static '/assets/img/credit-analysis.jpg' %}" alt="Credit Analysis Illustration" class="card-image">
                         <div class="card-content">
-                            <h2 class="card-title">Credit Analysis API</h2>
-                            <p class="card-description">Get instant credit analysis results through our powerful API endpoint. Make informed decisions with comprehensive credit reports and risk assessments.</p>
+                            <h2 class="card-title">Fitur Analisis Kredit</h2>
+                            <p class="card-description">Dapatkan hasil analisis kredit secara instan melalui fitur unggulan kami. Buat keputusan yang lebih baik dengan laporan kredit lengkap dan penilaian risiko yang akurat.</p>
                             <div class="endpoint-info">
-                                <span class="endpoint-label">API Endpoint:</span>
-                                <code class="endpoint-url">https://api.cricap.com/v1/credit-analysis</code>
+                                <span class="endpoint-label">Fitur Unggulan:</span>
+                                <code class="endpoint-url">lihat Fitur unggulan dibawah ini</code>
                             </div>
-                            <a href="{% url 'survey_1' %}" class="btn btn-primary">Learn More</a>
+                            <a href="{% url 'survey_1' %}" class="btn btn-primary">Pelajari Lebih Lanjut</a>
                         </div>
                     </div>        
                 </div>
